@@ -378,8 +378,14 @@ p { margin: 0; }
   margin-top: 56px;
   scroll-margin-top: 128px;
 }
-.split-media { position: relative; min-height: 240px; }
-.split-media img { object-fit: cover; }
+.split-media {
+  position: relative;
+  min-height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.split-media img { object-fit: cover; margin-inline: auto; }
 .split-copy {
   order: -1;
   padding: 36px 20px 28px;
@@ -469,9 +475,9 @@ p { margin: 0; }
   display: grid;
   grid-template-columns: 42px 1fr;
   gap: 14px;
-  align-items: start;
+  align-items: center;
 }
-.footer-highlights svg { width: 36px; height: 36px; color: #aeafb0; margin-top: 6px; }
+.footer-highlights svg { width: 36px; height: 36px; color: #aeafb0; }
 .footer-highlights p,
 .footer-highlights a {
   color: #fff;
@@ -510,6 +516,8 @@ p { margin: 0; }
 .hours svg { width: 14px; height: 14px; color: #aeafb0; }
 .footer-social {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
   margin-top: 18px;
 }
@@ -520,7 +528,17 @@ p { margin: 0; }
   color: #aeafb0;
   border: 1px solid #888a8e;
 }
-.footer-photo img { width: 100%; height: 180px; object-fit: cover; }
+.footer-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-photo img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  margin-inline: auto;
+}
 .copyright-bar {
   border-top: 1px solid var(--footer-line);
   text-align: center;
@@ -667,7 +685,12 @@ p { margin: 0; }
   font-weight: 600;
 }
 .about-checks svg { width: 16px; height: 16px; color: var(--teal); flex: none; }
-.about-photo img { width: 100%; height: auto; display: block; }
+.about-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about-photo img { width: 100%; height: auto; display: block; margin-inline: auto; }
 .about-more { padding: 36px 0 70px; }
 .about-columns { margin-top: 36px; display: grid; gap: 8px; }
 .about-feature { position: relative; margin-top: 36px; }
@@ -921,6 +944,10 @@ p { margin: 0; }
   cursor: pointer;
 }
 .contact-submit:hover { filter: brightness(0.92); }
+.contact-submit:disabled { cursor: wait; opacity: 0.7; }
+.contact-form-status { margin-top: 14px; font-weight: 600; }
+.contact-form-status.success { color: var(--teal-dark); }
+.contact-form-status.error { color: #b42318; }
 
 @media (min-width: 900px) {
   .clients-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 48px 20px 80px; }

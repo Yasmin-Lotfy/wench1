@@ -4,13 +4,23 @@ import {
   ClockIcon,
   FacebookIcon,
   LinkedinIcon,
+  MailIcon,
   PhoneIcon,
   PinterestIcon,
   TruckIcon,
   TwitterIcon,
   WhatsappIcon,
 } from "@/components/icons";
-import { days, highlights, phoneDisplay, siteName, telHref, waHref } from "@/lib/site";
+import {
+  contactEmail,
+  days,
+  emailHref,
+  highlights,
+  phoneDisplay,
+  siteName,
+  telHref,
+  waHref,
+} from "@/lib/site";
 
 export function Footer() {
   return (
@@ -28,6 +38,12 @@ export function Footer() {
             <a href={waHref} target="_blank" rel="noopener noreferrer">
               واتساب : <span dir="ltr">{phoneDisplay}</span>
             </a>
+          </p>
+        </div>
+        <div>
+          <MailIcon />
+          <p>
+            <a href={emailHref}>{contactEmail}</a>
           </p>
         </div>
         <div>
@@ -49,6 +65,10 @@ export function Footer() {
               <a href={waHref} target="_blank" rel="noopener noreferrer" dir="ltr">
                 {phoneDisplay}
               </a>
+            </li>
+            <li>
+              <span>البريد:</span>
+              <a href={emailHref}>{contactEmail}</a>
             </li>
             <li>
               <span>التغطية:</span>

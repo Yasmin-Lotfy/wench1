@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
-import { PhoneIcon, TruckIcon, WhatsappIcon } from "@/components/icons";
-import { phoneDisplay, siteName, telHref, waHref } from "@/lib/site";
+import { MailIcon, PhoneIcon, TruckIcon, WhatsappIcon } from "@/components/icons";
+import { contactEmail, emailHref, phoneDisplay, siteName, telHref, waHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "اتصل بنا",
-  description: `اتصل أو راسل ${siteName} على ${phoneDisplay}. خدمة 24 ساعة في اسيوط والمنيا وطريق الكريمات.`,
+  description: `اتصل أو راسل ${siteName} على ${phoneDisplay} أو ${contactEmail}. خدمة 24 ساعة في اسيوط والمنيا وطريق الكريمات.`,
 };
 
 export default function ContactPage() {
@@ -30,6 +30,15 @@ export default function ContactPage() {
               </a>
             </p>
             <WhatsappIcon width={68} height={68} />
+          </div>
+        </article>
+        <article>
+          <h2>البريد الإلكتروني</h2>
+          <div className="contact-feature-body">
+            <p>
+              <a href={emailHref}>{contactEmail}</a>
+            </p>
+            <MailIcon width={68} height={68} />
           </div>
         </article>
         <article>

@@ -1,20 +1,45 @@
 "use client";
 
-import { FormEvent } from "react";
-import { phoneTel } from "@/lib/site";
+import { FormEvent, useState } from "react";
 
 export function ContactForm() {
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  const [status, setStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [isSending, setIsSending] = useState(false);
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setStatus(null);
+    setIsSending(true);
     const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") || "").trim();
-    const email = String(data.get("email") || "").trim();
-    const phone = String(data.get("phone") || "").trim();
-    const message = String(data.get("message") || "").trim();
-    const text = [`الاسم: ${name}`, phone && `الموبايل: ${phone}`, email && `البريد: ${email}`, message]
-      .filter(Boolean)
-      .join("\n");
-    window.open(`https://wa.me/${phoneTel.replace("+", "")}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+    const form = event.currentTarget;
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          message: data.get("message"),
+        }),
+      });
+      const result: { error?: string } = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "تعذر إرسال الرسالة. حاول مرة أخرى.");
+      }
+
+      form.reset();
+      setStatus({ type: "success", message: "تم إرسال رسالتك بنجاح، سنتواصل معك قريبًا." });
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: error instanceof Error ? error.message : "تعذر إرسال الرسالة. حاول مرة أخرى.",
+      });
+    } finally {
+      setIsSending(false);
+    }
   }
 
   return (
@@ -27,8 +52,13 @@ export function ContactForm() {
         </div>
         <textarea name="message" required placeholder="اترك رسالتك او طلبك هنا*" aria-label="اترك رسالتك او طلبك هنا" />
       </div>
-      <button className="contact-submit" type="submit">
-        ارسل الأن
+      {status && (
+        <p className={`contact-form-status ${status.type}`} role="status">
+          {status.message}
+        </p>
+      )}
+      <button className="contact-submit" type="submit" disabled={isSending}>
+        {isSending ? "جارٍ الإرسال..." : "ارسل الأن"}
       </button>
     </form>
   );

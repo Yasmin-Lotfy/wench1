@@ -2,7 +2,9 @@ export const siteName = "ونش انقاذ السيارات اسيوط والم�
 
 export const phoneDisplay = "01037035990";
 export const phoneTel = "+201037035990";
+export const contactEmail = "winchelseed@gmail.com";
 export const telHref = `tel:${phoneTel}`;
+export const emailHref = `mailto:${contactEmail}`;
 export const waHref = `https://wa.me/201037035990?text=${encodeURIComponent(
   "مرحبا، محتاج ونش انقاذ. لو سمحت ابعتوا أقرب ونش."
 )}`;
