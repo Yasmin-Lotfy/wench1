@@ -228,7 +228,7 @@ p { margin: 0; }
   bottom: 16px;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  gap: 13px;
 }
 .hero-dots button,
 .dots button {
@@ -239,6 +239,14 @@ p { margin: 0; }
   padding: 0;
   background: rgba(255, 255, 255, 0.55);
   cursor: pointer;
+  position: relative;
+}
+/* Invisible 24px hit area around the 11px dot (WCAG 2.5.8) */
+.hero-dots button::after,
+.dots button::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
 }
 .hero-dots button.selected { background: var(--teal); }
 
@@ -451,7 +459,7 @@ p { margin: 0; }
 .dots {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 13px;
   margin-top: 18px;
 }
 .dots button {
@@ -1059,4 +1067,24 @@ p { margin: 0; }
   margin: 0;
   color: var(--muted);
   line-height: 1.8;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.contact-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
 }

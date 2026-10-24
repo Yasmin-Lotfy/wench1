@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import { AnnounceBar } from "@/components/Ctas";
 import { phoneDisplay, siteName, telHref } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "سياسة الخصوصية",
   description: `سياسة الخصوصية الخاصة بـ ${siteName}. كيف نتعامل مع بيانات التواصل عند طلب ونش الإنقاذ.`,
-};
+  canonicalPath: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
@@ -19,7 +21,7 @@ export default function PrivacyPage() {
         </p>
         <h2>البيانات التي نجمعها من الموقع</h2>
         <p>
-          الموقع صفحة تعريف وخدمة، ومن غير حساب مستخدم. نموذج اتصل بنا لا يحفظ البيانات على الموقع؛ زر الإرسال يفتح واتساب برسالتك على جهازك. لو فتحت الموقع بس، مش بنخزن بيانات شخصية عنك عندنا.
+          الموقع صفحة تعريف وخدمة، ومن غير حساب مستخدم. لما تبعت نموذج اتصل بنا، الاسم والبريد الإلكتروني ورقم الهاتف والرسالة بيتبعتوا بالبريد الإلكتروني لصندوق بريد الشركة عن طريق خدمة إرسال بريد (Resend)، ومش بيتحفظوا في قاعدة بيانات على الموقع. لو فتحت الموقع بس، مش بنخزن بيانات شخصية عنك عندنا.
         </p>
         <h2>الاتصال الهاتفي وواتساب</h2>
         <p>

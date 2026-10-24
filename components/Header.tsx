@@ -60,6 +60,10 @@ export function Header() {
       router.push("/about");
       return;
     }
+    if (/منطق|مركز|سوهاج|اسيوط|أسيوط|المنيا|الكريمات|طريق|قري|قرى/.test(value)) {
+      router.push("/areas");
+      return;
+    }
     if (/عملاء|عملائنا|عميل/.test(value)) {
       router.push("/clients");
       return;

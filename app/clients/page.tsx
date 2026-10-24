@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import { siteName } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "عملائنا",
   description: `ماركات السيارات التي ينقلها ${siteName} داخل اسيوط والمنيا وعلى طريق الكريمات.`,
-};
+  canonicalPath: "/clients",
+});
 
 const logos = [
   { src: "/brands/hyundai.jpg", alt: "هيونداي" },
@@ -46,7 +48,8 @@ const logos = [
 
 export default function ClientsPage() {
   return (
-    <section className="clients-page" aria-label="عملائنا">
+    <section className="clients-page" aria-labelledby="clients-title">
+      <h1 id="clients-title" className="sr-only">عملائنا</h1>
       <ul className="clients-grid">
         {logos.map((logo) => (
           <li key={logo.src}>

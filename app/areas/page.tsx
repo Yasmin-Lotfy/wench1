@@ -39,7 +39,7 @@ export default function AreasPage() {
         <div className="container page-banner-inner">
           <h1>مناطق تغطية خدمة الونش</h1>
           <nav className="crumbs" aria-label="مسار الصفحة">
-            <span className="crumbs-label">YOU ARE HERE</span>
+            <span className="crumbs-label">أنت هنا</span>
             <Link href="/">الرئيسية</Link>
             <span className="sep">/</span>
             <span className="here">المناطق</span>

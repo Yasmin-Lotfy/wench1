@@ -1,9 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { ActionLinks, AnnounceBar } from "@/components/Ctas";
 import { BrandCarousel } from "@/components/BrandCarousel";
 import { ChatUserIcon, TruckIcon, WrenchIcon } from "@/components/icons";
 import { HeroSlider } from "@/components/HeroSlider";
 import { siteName } from "@/lib/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
+};
 
 const features = [
   {
@@ -56,7 +62,7 @@ export default function HomePage() {
 
       <section className="split" id="services">
         <div className="split-copy">
-          <h2 className="section-title">نقل سيارات الحوادث من وإلي مراكز الصيانة</h2>
+          <h2 className="section-title">نقل سيارات الحوادث من وإلى مراكز الصيانة</h2>
           <p>
             هل تبحث عن خدمة إنقاذ سيارات سريعة وموثوقة في أي وقت؟ يوفر لك {siteName} حلولاً لنقل وسحب السيارات على مدار 24 ساعة، مع سرعة استجابة وفريق جاهز للوصول إليك داخل اسيوط والمنيا وعلى طريق الكريمات.
           </p>
@@ -91,7 +97,7 @@ export default function HomePage() {
           />
         </div>
         <div className="split-copy">
-          <h2 className="section-title">خدمة إنقاذ سيارات في الطرق الصحراويه والعامة</h2>
+          <h2 className="section-title">خدمة إنقاذ سيارات في الطرق الصحراوية والعامة</h2>
           <p>
             تنتشر خدمة {siteName} على الطرق السريعة والمحاور الرئيسية، ومنها طريق الكريمات والطرق الصحراوية والعامة، لخدمة أصحاب السيارات على مدار 24 ساعة طوال أيام الأسبوع.
           </p>
@@ -99,7 +105,7 @@ export default function HomePage() {
             ننقل السيارة المعطلة أو المتضررة إلى المكان الذي يحدده العميل، سواء أقرب مركز صيانة أو عنوان داخل اسيوط والمنيا. السائقون معتادون على ظروف الطريق المختلفة وأنواع السيارات.
           </p>
           <p>
-            نقلل وقت الانتظار على الطريق بقدر الإمكان، لأن التوقف على طريق سريع أو صحراوي يحتاج استجابة سريعة وهدوئاً في التعامل مع الموقف.
+            نقلل وقت الانتظار على الطريق بقدر الإمكان، لأن التوقف على طريق سريع أو صحراوي يحتاج استجابة سريعة وهدوءاً في التعامل مع الموقف.
           </p>
           <p>
             لو سيارتك وقفت في اسيوط أو المنيا أو على طريق الكريمات، كلمنا أو راسلنا على واتساب ونرسل أقرب ونش إليك.

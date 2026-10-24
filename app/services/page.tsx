@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { siteName, telHref } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "خدماتنا",
   description: `خدمات ${siteName}: إنقاذ ونقل السيارات 24 ساعة على الطرق السريعة والصحراوية والعامة في اسيوط والمنيا وطريق الكريمات.`,
-};
+  canonicalPath: "/services",
+});
 
 const blocks = [
   {
@@ -22,7 +24,7 @@ const blocks = [
     ],
   },
   {
-    title: "نقل سيارات الحوادث من وإلي مراكز الصيانة",
+    title: "نقل سيارات الحوادث من وإلى مراكز الصيانة",
     image: "/images/hero-2.jpg",
     alt: "نقل سيارة على سطحة الونش",
     imageFirst: false,
@@ -35,7 +37,7 @@ const blocks = [
     ],
   },
   {
-    title: "خدمة إنقاذ سيارات في الطرق الصحراويه والعامة",
+    title: "خدمة إنقاذ سيارات في الطرق الصحراوية والعامة",
     image: "/images/service-yellow.jpg",
     alt: "سيارة على سطح ونش إنقاذ",
     imageFirst: true,
@@ -51,6 +53,7 @@ const blocks = [
 export default function ServicesPage() {
   return (
     <div className="services-page">
+      <h1 className="sr-only">خدماتنا</h1>
       {blocks.map((block) => (
         <section className="split" key={block.title}>
           {block.imageFirst ? (
@@ -73,7 +76,7 @@ export default function ServicesPage() {
                   d="M7 3.8h2.2l1.2 3-1.6 1a12.5 12.5 0 0 0 6.4 6.4l1-1.6 3 1.2V18a1.8 1.8 0 0 1-2 1.8A15.2 15.2 0 0 1 4.2 5.8 1.8 1.8 0 0 1 7 3.8Z"
                 />
               </svg>
-              <span>كلمنا الأن نصلك فى الحال</span>
+              <span>كلمنا الآن نصلك فى الحال</span>
             </a>
           </div>
           {block.imageFirst ? null : (

@@ -31,7 +31,7 @@ export function ActionLinks() {
             d="M7 3.8h2.2l1.2 3-1.6 1a12.5 12.5 0 0 0 6.4 6.4l1-1.6 3 1.2V18a1.8 1.8 0 0 1-2 1.8A15.2 15.2 0 0 1 4.2 5.8 1.8 1.8 0 0 1 7 3.8Z"
           />
         </svg>
-        <span>كلمنا الأن نصلك فى الحال</span>
+        <span>كلمنا الآن نصلك فى الحال</span>
       </a>
       <a className="action" href={waHref} target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">

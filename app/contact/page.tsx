@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import { ContactForm } from "@/components/ContactForm";
 import { MailIcon, PhoneIcon, TruckIcon, WhatsappIcon } from "@/components/icons";
 import { contactEmail, emailHref, phoneDisplay, siteName, telHref, waHref } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "اتصل بنا",
   description: `اتصل أو راسل ${siteName} على ${phoneDisplay} أو ${contactEmail}. خدمة 24 ساعة في اسيوط والمنيا وطريق الكريمات.`,
-};
+  canonicalPath: "/contact",
+});
 
 export default function ContactPage() {
   return (
     <div className="contact-page">
       <section className="contact-features">
         <article>
-          <h1>كلمنا الأن نصلك فى الحال</h1>
+          <h1>كلمنا الآن نصلك فى الحال</h1>
           <div className="contact-feature-body">
             <p>
               الموبايل : <a href={telHref}>{phoneDisplay}</a>
@@ -44,7 +46,7 @@ export default function ContactPage() {
         <article>
           <h2>مواعيد العمل</h2>
           <div className="contact-feature-body">
-            <p>فريق عمل مخصص لتلقى جميع الأستفسارات طول ايام الاسبوع لمدة 24 ساعة</p>
+            <p>فريق عمل مخصص لتلقى جميع الاستفسارات طول ايام الاسبوع لمدة 24 ساعة</p>
             <TruckIcon width={68} height={68} />
           </div>
         </article>

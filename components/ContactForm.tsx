@@ -22,9 +22,10 @@ export function ContactForm() {
           email: data.get("email"),
           phone: data.get("phone"),
           message: data.get("message"),
+          company: data.get("company"),
         }),
       });
-      const result: { error?: string } = await response.json();
+      const result: { error?: string } = await response.json().catch(() => ({}));
 
       if (!response.ok) {
         throw new Error(result.error || "تعذر إرسال الرسالة. حاول مرة أخرى.");
@@ -44,6 +45,7 @@ export function ContactForm() {
 
   return (
     <form className="contact-form" onSubmit={onSubmit}>
+      <input className="contact-honeypot" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="contact-fields">
         <div className="contact-inputs">
           <input name="name" required placeholder="اسمك هنا *" aria-label="اسمك هنا" />
@@ -58,7 +60,7 @@ export function ContactForm() {
         </p>
       )}
       <button className="contact-submit" type="submit" disabled={isSending}>
-        {isSending ? "جارٍ الإرسال..." : "ارسل الأن"}
+        {isSending ? "جارٍ الإرسال..." : "ارسل الآن"}
       </button>
     </form>
   );

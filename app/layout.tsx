@@ -25,11 +25,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   icons: { icon: "/images/logo.png", apple: "/images/logo.png" },
   robots: { index: true, follow: true },
-  alternates: { canonical: siteUrl },
   openGraph: {
     title: siteName,
     description,
-    url: siteUrl,
     siteName,
     locale: "ar_EG",
     type: "website",

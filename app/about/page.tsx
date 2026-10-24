@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { CheckIcon, RoadIcon } from "@/components/icons";
 import { siteName } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "من نحن",
   description: `تعرف على ${siteName}. خدمة سحب ونقل السيارات على مدار 24 ساعة في اسيوط والمنيا وطريق الكريمات.`,
-};
+  canonicalPath: "/about",
+});
 
 const points = [
   "سيارات انقاذ حديثة",
   "ارخص ونش انقاذ سيارات",
-  "الاتزام بالمواعيد",
+  "الالتزام بالمواعيد",
   "ارخص ونش انقاذ",
   "خدمة 24 ساعة",
 ];
@@ -57,8 +59,8 @@ export default function AboutPage() {
         <div className="container page-banner-inner">
           <h1>من نحن</h1>
           <nav className="crumbs" aria-label="مسار الصفحة">
-            <span className="crumbs-label">YOU ARE HERE</span>
-            <Link href="/">HOME</Link>
+            <span className="crumbs-label">أنت هنا</span>
+            <Link href="/">الرئيسية</Link>
             <span className="sep">/</span>
             <span className="here">من نحن</span>
           </nav>

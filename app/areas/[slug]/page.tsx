@@ -17,6 +17,8 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export const dynamicParams = false;
+
 /** Pre-render all pages that have pageEnabled = true */
 export function generateStaticParams() {
   return allPagedAreas
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     area.type === "governorate"
       ? `ونش إنقاذ سيارات في ${area.name}`
       : area.type === "center"
-      ? `ونش إنقاذ سيارات في ${area.name} – ${siteName}`
+      ? `ونش إنقاذ سيارات في ${area.name}`
       : `ونش إنقاذ على ${area.name}`;
 
   return buildMetadata({
@@ -121,7 +123,7 @@ export default async function AreaPage({ params }: Props) {
         <div className="container page-banner-inner">
           <h1>{h1}</h1>
           <nav className="crumbs" aria-label="مسار الصفحة">
-            <span className="crumbs-label">YOU ARE HERE</span>
+            <span className="crumbs-label">أنت هنا</span>
             {crumbs.map((crumb, i) => (
               <span key={crumb.path} style={{ display: "contents" }}>
                 {i > 0 && <span className="sep">/</span>}

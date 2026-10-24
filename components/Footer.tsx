@@ -84,7 +84,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h2 className="footer-title">اهم مايميزنا</h2>
+          <h2 className="footer-title">اهم ما يميزنا</h2>
           <ul className="footer-list checks">
             {highlights.map((item) => (
               <li key={item}>

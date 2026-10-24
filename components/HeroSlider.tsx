@@ -31,7 +31,7 @@ export function HeroSlider() {
               src={slide.src}
               alt={slide.alt}
               fill
-              priority
+              priority={slideIndex === 0}
               sizes="100vw"
             />
             <TitleTag className="hero-title">{slide.title}</TitleTag>

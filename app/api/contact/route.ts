@@ -5,7 +5,17 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
+function isSameOrigin(request: Request) {
+  const origin = request.headers.get("origin");
+  return origin !== null && origin === new URL(request.url).origin;
+}
+
 export async function POST(request: Request) {
+  // Blocks cross-site form posts (text/plain needs no CORS preflight) and non-browser scripts without an Origin.
+  if (!isSameOrigin(request) || !request.headers.get("content-type")?.includes("application/json")) {
+    return NextResponse.json({ error: "طلب غير مسموح." }, { status: 403 });
+  }
+
   let body: unknown;
 
   try {
@@ -16,6 +26,11 @@ export async function POST(request: Request) {
 
   if (!isRecord(body)) {
     return NextResponse.json({ error: "بيانات النموذج غير صالحة." }, { status: 400 });
+  }
+
+  // Honeypot: hidden from people, filled in by bots. Pretend success so bots don't retry.
+  if (typeof body.company === "string" && body.company !== "") {
+    return NextResponse.json({ ok: true });
   }
 
   const name = typeof body.name === "string" ? body.name.trim() : "";
