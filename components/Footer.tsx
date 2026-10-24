@@ -4,7 +4,6 @@ import {
   ClockIcon,
   FacebookIcon,
   LinkedinIcon,
-  MailIcon,
   PhoneIcon,
   PinterestIcon,
   TruckIcon,
@@ -12,9 +11,7 @@ import {
   WhatsappIcon,
 } from "@/components/icons";
 import {
-  contactEmail,
   days,
-  emailHref,
   highlights,
   phoneDisplay,
   siteName,
@@ -41,12 +38,6 @@ export function Footer() {
           </p>
         </div>
         <div>
-          <MailIcon />
-          <p>
-            <a href={emailHref}>{contactEmail}</a>
-          </p>
-        </div>
-        <div>
           <TruckIcon />
           <p>فريق عمل مخصص لتلقى جميع الاستفسارات طول ايام الاسبوع لمدة 24 ساعة</p>
         </div>
@@ -65,10 +56,6 @@ export function Footer() {
               <a href={waHref} target="_blank" rel="noopener noreferrer" dir="ltr">
                 {phoneDisplay}
               </a>
-            </li>
-            <li>
-              <span>البريد:</span>
-              <a href={emailHref}>{contactEmail}</a>
             </li>
             <li>
               <span>التغطية:</span>

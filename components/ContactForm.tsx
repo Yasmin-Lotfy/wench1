@@ -1,66 +1,32 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
+import { phoneTel } from "@/lib/site";
 
 export function ContactForm() {
-  const [status, setStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
-  const [isSending, setIsSending] = useState(false);
-
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus(null);
-    setIsSending(true);
     const data = new FormData(event.currentTarget);
-    const form = event.currentTarget;
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          phone: data.get("phone"),
-          message: data.get("message"),
-          company: data.get("company"),
-        }),
-      });
-      const result: { error?: string } = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(result.error || "تعذر إرسال الرسالة. حاول مرة أخرى.");
-      }
-
-      form.reset();
-      setStatus({ type: "success", message: "تم إرسال رسالتك بنجاح، سنتواصل معك قريبًا." });
-    } catch (error) {
-      setStatus({
-        type: "error",
-        message: error instanceof Error ? error.message : "تعذر إرسال الرسالة. حاول مرة أخرى.",
-      });
-    } finally {
-      setIsSending(false);
-    }
+    const name = String(data.get("name") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    const message = String(data.get("message") || "").trim();
+    const header = phone ? [`الاسم: ${name}`, `الموبايل: ${phone}`] : [`الاسم: ${name}`];
+    const text = [...header, "", message].join("\n");
+    // Same-tab navigation: a new-tab popup can be blocked on mobile, and wa.me hands off to the WhatsApp app anyway.
+    window.location.href = `https://wa.me/${phoneTel.replace("+", "")}?text=${encodeURIComponent(text)}`;
   }
 
   return (
     <form className="contact-form" onSubmit={onSubmit}>
-      <input className="contact-honeypot" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="contact-fields">
         <div className="contact-inputs">
-          <input name="name" required placeholder="اسمك هنا *" aria-label="اسمك هنا" />
-          <input name="email" type="email" required placeholder="البريد الالكترونى *" aria-label="البريد الالكترونى" />
-          <input name="phone" type="tel" placeholder="رقم الموبايل" aria-label="رقم الموبايل" />
+          <input name="name" required maxLength={120} placeholder="اسمك هنا *" aria-label="اسمك هنا" />
+          <input name="phone" type="tel" maxLength={40} placeholder="رقم الموبايل" aria-label="رقم الموبايل" />
         </div>
-        <textarea name="message" required placeholder="اترك رسالتك او طلبك هنا*" aria-label="اترك رسالتك او طلبك هنا" />
+        <textarea name="message" required maxLength={2000} placeholder="اترك رسالتك او طلبك هنا*" aria-label="اترك رسالتك او طلبك هنا" />
       </div>
-      {status && (
-        <p className={`contact-form-status ${status.type}`} role="status">
-          {status.message}
-        </p>
-      )}
-      <button className="contact-submit" type="submit" disabled={isSending}>
-        {isSending ? "جارٍ الإرسال..." : "ارسل الآن"}
+      <button className="contact-submit" type="submit">
+        ارسل على واتساب
       </button>
     </form>
   );

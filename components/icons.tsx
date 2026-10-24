@@ -22,19 +22,6 @@ export function PhoneIcon(props: IconProps) {
   );
 }
 
-export function MailIcon(props: IconProps) {
-  return (
-    <Svg stroke="currentColor" strokeWidth="1.8" {...props}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z"
-      />
-      <path strokeLinecap="round" strokeLinejoin="round" d="m5.5 7.5 6.5 5 6.5-5" />
-    </Svg>
-  );
-}
-
 export function WhatsappIcon(props: IconProps) {
   return (
     <Svg fill="currentColor" {...props}>
